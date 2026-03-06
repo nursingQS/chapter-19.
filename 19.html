@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chest & Respiratory Disorders – Chapter 19 Exam</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(145deg, #1d4e5f, #3d8b97);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(145deg, #1d4e5f, #3d8b97);
+            color: white;
+            padding: 20px 30px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 4px solid #0f3440;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .counter {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 100px;
+            text-align: center;
+            white-space: nowrap;
+            margin-left: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #c2e3ed;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #3d8b97, #1d4e5f);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 30px;
+            background: #e8f4f7;
+        }
+        
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 3px solid #a2d4e0;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .question-header {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            background: linear-gradient(145deg, #3d8b97, #1d4e5f);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(29,78,95,0.4);
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: #0f3440;
+            flex-grow: 1;
+            font-weight: 600;
+            padding-right: 15px;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            padding: 20px;
+            border: 3px solid #a2d4e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .option:hover {
+            background: #d4ecf2;
+            border-color: #3d8b97;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(61,139,151,0.15);
+        }
+        
+        .option-letter {
+            background: linear-gradient(145deg, #3d8b97, #1d4e5f);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            border: 3px solid #1d4e5f;
+        }
+        
+        .option.correct {
+            background: linear-gradient(145deg, #66bb6a, #43a047);
+            border-color: #43a047;
+            color: white;
+        }
+        
+        .option.correct .option-letter {
+            background: #43a047;
+            color: white;
+            border-color: #388e3c;
+        }
+        
+        .option.incorrect {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            border-color: #e53935;
+            color: white;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #e53935;
+            color: white;
+            border-color: #d32f2f;
+        }
+        
+        .feedback-area {
+            flex-shrink: 0;
+        }
+        
+        .feedback {
+            padding: 25px;
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+            border: 3px solid #43a047;
+            color: #1b5e20;
+            display: flex;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(145deg, #ffcdd2, #ef9a9a);
+            border: 3px solid #e53935;
+            color: #b71c1c;
+            display: flex;
+        }
+        
+        .feedback-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .rationale {
+            background: linear-gradient(145deg, #d4edf2, #b8e0e8);
+            border: 3px solid #1f6f8f;
+            border-radius: 15px;
+            padding: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .rationale.show {
+            display: block;
+        }
+        
+        .rationale h4 {
+            color: #0d5e7a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .rationale p {
+            color: #0d5e7a;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #a2d4e0;
+            border-top: 3px solid #79c0d0;
+            flex-shrink: 0;
+            height: 80px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(145deg, #3d8b97, #1d4e5f);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(29,78,95,0.4);
+            background: linear-gradient(145deg, #1d4e5f, #0f3440);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(145deg, #90a4ae, #607d8b);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(96,125,139,0.4);
+            background: linear-gradient(145deg, #607d8b, #455a64);
+        }
+        
+        .btn-cancel {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            color: white;
+            display: none;
+        }
+        
+        .btn-cancel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229,57,53,0.4);
+            background: linear-gradient(145deg, #e53935, #c62828);
+        }
+        
+        .btn-cancel.show {
+            display: flex;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                height: 75px;
+                padding: 15px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+                font-size: 1.05rem;
+                gap: 15px;
+            }
+            
+            .option-letter {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .navigation {
+                padding: 15px 20px;
+                height: 70px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .header {
+                height: 70px;
+                padding: 15px 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-content">
+            <h1>🫁 Chest & Lower Respiratory Disorders (Chapter 19)</h1>
+            <div class="subtitle">41 NCLEX-style questions with rationales</div>
+        </div>
+        <div class="counter" id="counter">1/41</div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="main-content">
+        <div class="question-area">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber">1</div>
+                <div class="question-text" id="question"></div>
+            </div>
+            
+            <div class="options-container" id="options"></div>
+        </div>
+        
+        <div class="feedback-area">
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div id="feedbackText"></div>
+            </div>
+            <div class="rationale" id="rationale">
+                <h4>📘 RATIONALE:</h4>
+                <p id="rationaleText"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()">
+            ⬅️ Previous
+        </button>
+        <div class="nav-buttons">
+            <button class="btn btn-cancel" id="cancelBtn" onclick="cancelSelection()">
+                ❌ Cancel
+            </button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chapter 19: Management of Patients with Chest and Lower Respiratory Tract Disorders – 41 questions (exact from document)
+    const questions = [
+        {
+            id: 1,
+            question: "1. A perioperative nurse is caring for a postoperative client. The client has a shallow respiratory pattern and is reluctant to cough or to begin mobilizing. The nurse should address the client's increased risk for what complication?",
+            options: [
+                "A. Acute respiratory distress syndrome (ARDS)",
+                "B. Atelectasis",
+                "C. Aspiration",
+                "D. Pulmonary embolism"
+            ],
+            correct: 1, // B
+            rationale: "A shallow, monotonous respiratory pattern coupled with immobility places the client at an increased risk of developing atelectasis. These specific factors are less likely to result in pulmonary embolism or aspiration. ARDS involves an exaggerated inflammatory response and does not normally result from factors such as immobility and shallow breathing. (PTS:1 REF:p.527)"
+        },
+        {
+            id: 2,
+            question: "2. A critical-care nurse is caring for a client diagnosed with pneumonia as a surgical complication. The nurse's assessment reveals that the client has an increased work of breathing due to copious tracheobronchial secretions. What should the nurse encourage the client to do?",
+            options: [
+                "A. Increase oral fluids unless contraindicated.",
+                "B. Call the nurse for oral suctioning, as needed.",
+                "C. Lie in a low Fowler or supine position.",
+                "D. Increase activity."
+            ],
+            correct: 0, // A
+            rationale: "The nurse should encourage hydration because adequate hydration thins and loosens pulmonary secretions. Oral suctioning is not sufficiently deep to remove tracheobronchial secretions. The client should have the head of the bed raised, and rest should be promoted to avoid exacerbation of symptoms. (PTS:1 REF:p.539)"
+        },
+        {
+            id: 3,
+            question: "3. The nurse is caring for a client who has been in a motor vehicle accident and is suspected of having developed pleurisy. Which assessment finding would best corroborate this diagnosis?",
+            options: [
+                "A. The client is experiencing painless hemoptysis.",
+                "B. The client's arterial blood gases (ABGs) are normal, but the client demonstrates increased work of breathing.",
+                "C. The client's oxygen saturation level is below 88%, but the client denies shortness of breath.",
+                "D. The client's pain intensifies when the client coughs or takes a deep breath."
+            ],
+            correct: 3, // D
+            rationale: "The key characteristic of pleuritic pain is its relationship to respiratory movement. Taking a deep breath, coughing, or sneezing worsens the pain. The client's ABGs would most likely be abnormal, and shortness of breath would be expected. Painless hemoptysis is not characteristic of pleurisy. (PTS:1 REF:p.553)"
+        },
+        {
+            id: 4,
+            question: "4. The nurse caring for a client recently diagnosed with lung disease encourages the client not to smoke. What is the primary rationale behind this nursing action?",
+            options: [
+                "A. Smoking decreases the amount of mucus production.",
+                "B. Smoke particles compete for binding sites on hemoglobin.",
+                "C. Smoking causes atrophy of the alveoli.",
+                "D. Smoking damages the ciliary cleansing mechanism."
+            ],
+            correct: 3, // D
+            rationale: "In addition to irritating the mucous cells of the bronchi and inhibiting the function of alveolar macrophage (scavenger) cells, smoking damages the ciliary cleansing mechanism of the respiratory tract. Smoking also increases the amount of mucus production and distends the alveoli in the lungs. It reduces the oxygen-carrying capacity of hemoglobin, but not by directly competing for binding sites. (PTS:1 REF:p.544)"
+        },
+        {
+            id: 5,
+            question: "5. The nurse is caring for a client who is scheduled for a lobectomy for lung cancer. While assisting with a subclavian vein central line insertion, the nurse notes that the client's oxygen saturation is rapidly dropping. The client reports shortness of breath and becomes tachypneic. The nurse suspects a pneumothorax has developed. Which further assessment finding would support the presence of a pneumothorax?",
+            options: [
+                "A. Diminished or absent breath sounds on the affected side",
+                "B. Paradoxical chest wall movement with respirations",
+                "C. Sudden loss of consciousness",
+                "D. Muffled heart sounds"
+            ],
+            correct: 0, // A
+            rationale: "In the case of a simple pneumothorax, auscultating the breath sounds will reveal absent or diminished breath sounds on the affected side. Paradoxical chest wall movements occur in flail chest conditions. Sudden loss of consciousness does not typically occur. Muffled or distant heart sounds occur in pericardial tamponade. (PTS:1 REF:p.581)"
+        },
+        {
+            id: 6,
+            question: "6. The nurse in the intensive care unit is caring for a client with pulmonary hypertension. Which finding should the nurse expect to assess?",
+            options: [
+                "A. Pulmonary artery pressure greater than 20 mm Hg",
+                "B. Flat neck veins",
+                "C. Dyspnea at rest",
+                "D. Enlarged spleen"
+            ],
+            correct: 2, // C
+            rationale: "The main symptom in pulmonary hypertension is dyspnea. At first dyspnea occurs with exertion, then eventually at rest. A client with pulmonary hypertension will have a pulmonary artery pressure greater than 25 mm Hg at rest and distended neck veins secondary to right-sided heart failure. The nurse would expect the liver, not the spleen, to be enlarged secondary to engorgement in pulmonary hypertension. (PTS:1 REF:p.575)"
+        },
+        {
+            id: 7,
+            question: "7. A new employee asks the occupational health nurse about measures to prevent inhalation exposure to toxic substances. What should the nurse recommend?",
+            options: [
+                "A. 'Position a fan blowing toxic substances away from you to prevent you from being exposed.'",
+                "B. 'Wear protective attire and devices when working with a toxic substance.'",
+                "C. 'Make sure that you keep your immunizations up to date to prevent respiratory diseases resulting from toxins.'",
+                "D. 'Always wear a disposable paper face mask when you are working with inhalable toxins.'"
+            ],
+            correct: 1, // B
+            rationale: "When working with toxic substances, the employee must wear or use protective devices such as face masks, hoods, or industrial respirators. Immunizations do not confer protection from toxins and a paper mask is normally insufficient protection. Never position a fan directly blowing on the toxic substance as it will disperse the fumes throughout the area. (PTS:1 REF:p.577)"
+        },
+        {
+            id: 8,
+            question: "8. An x-ray of a trauma client reveals rib fractures, and the client is diagnosed with a small flail chest injury. Which intervention should the nurse include in the client's plan of care?",
+            options: [
+                "A. Initiate chest physiotherapy.",
+                "B. Immobilize the ribs with an abdominal binder.",
+                "C. Prepare the client for surgery.",
+                "D. Immediately sedate and intubate the client."
+            ],
+            correct: 0, // A
+            rationale: "As with rib fracture, treatment of flail chest is usually supportive. Management includes chest physiotherapy and controlling pain. Intubation is required only for severe flail chest injuries, not small flail chest injuries, and surgery is required only in rare circumstances to stabilize the flail segment. Immobilization of the ribs with an abdominal binder is not necessary for a small flail chest injury. (PTS:1 REF:p.591)"
+        },
+        {
+            id: 9,
+            question: "9. A client has tested positive for tuberculosis (TB). While providing client teaching, which information should the nurse prioritize?",
+            options: [
+                "A. The importance of adhering closely to the prescribed medication regimen",
+                "B. The disease being a lifelong, chronic condition that will affect activities of daily living (ADLs)",
+                "C. TB being self-limiting but taking up to 2 years to resolve",
+                "D. The need to work closely with the occupational and physical therapists"
+            ],
+            correct: 0, // A
+            rationale: "Successful treatment of TB is highly dependent on careful adherence to the medication regimen. The disease is not self-limiting; occupational and physical therapy are not necessarily indicated. TB is curable. (PTS:1 REF:p.550)"
+        },
+        {
+            id: 10,
+            question: "10. The nurse is assessing an adult client following a motor vehicle accident. The nurse observes that the client has an increased use of accessory muscles and is reporting chest pain and shortness of breath. The nurse should recognize the possibility of which condition?",
+            options: [
+                "A. Pneumothorax",
+                "B. Cardiac ischemia",
+                "C. Acute bronchitis",
+                "D. Aspiration"
+            ],
+            correct: 0, // A
+            rationale: "If the pneumothorax is large and the lung collapses totally, acute respiratory distress occurs. The client is anxious, has dyspnea and air hunger, has increased use of the accessory muscles, and may develop central cyanosis from severe hypoxemia. These symptoms are not definitive of pneumothorax, but because of the client's recent trauma they are inconsistent with cardiac ischemia, bronchitis, and aspiration. (PTS:1 REF:p.594)"
+        },
+        {
+            id: 11,
+            question: "11. The nurse is caring for a client suspected of having acute respiratory distress syndrome (ARDS). What is the most likely diagnostic test ordered in the early stages of this disease to differentiate the client's symptoms from those of a cardiac etiology?",
+            options: [
+                "A. Carboxyhemoglobin level",
+                "B. Brain natriuretic peptide (BNP) level",
+                "C. C-reactive protein (CRP) level",
+                "D. Complete blood count"
+            ],
+            correct: 1, // B
+            rationale: "Common diagnostic tests performed for clients with potential ARDS include plasma brain natriuretic peptide (BNP) levels, echocardiography, and pulmonary artery catheterization. The BNP level is helpful in distinguishing ARDS from cardiogenic pulmonary edema. The carboxyhemoglobin level will be increased in a client with an inhalation injury, which commonly progresses into ARDS. CRP and CBC levels do not help differentiate from a cardiac problem. (PTS:1 REF:p.572)"
+        },
+        {
+            id: 12,
+            question: "12. The nurse is caring for a client at risk for atelectasis. The nurse implements a first-line measure to prevent atelectasis development in the client. What is an example of a first-line measure to minimize atelectasis?",
+            options: [
+                "A. Incentive spirometry",
+                "B. Intermittent positive-pressure breathing (IPPB)",
+                "C. Positive end-expiratory pressure (PEEP)",
+                "D. Bronchoscopy"
+            ],
+            correct: 0, // A
+            rationale: "Strategies to prevent atelectasis, which include frequent turning, early ambulation, lung-volume expansion maneuvers (deep breathing exercises, incentive spirometry), and coughing, serve as the first-line measures to minimize or treat atelectasis by improving ventilation. In clients who do not respond to first-line measures or who cannot perform deep-breathing exercises, other treatments such as positive end-expiratory pressure (PEEP), continuous or intermittent positive-pressure breathing (IPPB), or bronchoscopy may be used. (PTS:1 REF:p.530)"
+        },
+        {
+            id: 13,
+            question: "13. While planning a client's care, the nurse identifies nursing actions to minimize the client's pleuritic pain. Which intervention should the nurse include in the plan of care?",
+            options: [
+                "A. Administer an analgesic before coughing and deep breathing.",
+                "B. Ambulate the client at least three times daily.",
+                "C. Arrange for a soft-textured diet and increased fluid intake.",
+                "D. Encourage the client to speak as little as possible."
+            ],
+            correct: 0, // A
+            rationale: "The key characteristic of pleuritic pain is its relationship to respiratory movement. Taking a deep breath, coughing, or sneezing worsens the pain. Because deep breathing and coughing prevent atelectasis, the client should be given an analgesic prior to performing these respiratory exercises. A soft diet is not necessarily indicated, and there is no need for the client to avoid speaking. Ambulation has multiple benefits, but pain management is not among them. (PTS:1 REF:p.554)"
+        },
+        {
+            id: 14,
+            question: "14. The perioperative nurse is writing a care plan for a client who has returned from surgery 2 hours ago. Which measure should the nurse implement to most decrease the client's risk of developing pulmonary emboli (PE)?",
+            options: [
+                "A. Early ambulation",
+                "B. Increased dietary intake of protein",
+                "C. Maintaining the client in a supine position",
+                "D. Administering aspirin with warfarin"
+            ],
+            correct: 0, // A
+            rationale: "For clients at risk for PE, the most effective approach for prevention is to prevent deep vein thrombosis. Active leg exercises to avoid venous stasis, early ambulation, and use of elastic compression stockings are general preventive measures. The client does not require increased dietary intake of protein directly related to prevention of PE, although it will assist in wound healing during the postoperative period. The client should not be maintained in one position, but frequently repositioned unless contraindicated by the surgical procedure. Aspirin should never be given with warfarin because it will increase the client's risk for bleeding. (PTS:1 REF:p.535)"
+        },
+        {
+            id: 15,
+            question: "15. The school nurse is presenting a class on smoking cessation at the local high school. A participant in the class asks the nurse about the risk of lung cancer in those who smoke. What response related to risk for lung cancer in smokers is most accurate?",
+            options: [
+                "A. 'The younger you are when you start smoking, the higher your risk of lung cancer.'",
+                "B. 'The risk for lung cancer never decreases once you have smoked, which is why smokers need annual chest x-rays.'",
+                "C. 'The risk for lung cancer is determined mostly by what type of cigarettes you smoke.'",
+                "D. 'The risk for lung cancer depends primarily on the other risk factors for cancer that you have.'"
+            ],
+            correct: 0, // A
+            rationale: "Risk is determined by the pack-year history (number of packs of cigarettes used each day, multiplied by the number of years smoked), the age of initiation of smoking, the depth of inhalation, and the tar and nicotine levels in the cigarettes smoked. The younger a person is when he or she starts smoking, the greater the risk of developing lung cancer. Risk declines after smoking cessation. The type of cigarettes is a significant variable, but this is not the most important factor. (PTS:1 REF:p.578)"
+        },
+        {
+            id: 16,
+            question: "16. The nurse is assessing a client who has a 35 pack-year history of cigarette smoking. In light of this known risk factor for lung cancer, which statement by the client should prompt the nurse to refer the client for further assessment?",
+            options: [
+                "A. 'Lately, I have this cough that just never seems to go away.'",
+                "B. 'I find that I don't have nearly the stamina that I used to.'",
+                "C. 'I seem to get nearly every cold and flu that goes around my workplace.'",
+                "D. 'I never used to have any allergies, but now I think I'm developing allergies to dust and pet hair.'"
+            ],
+            correct: 0, // A
+            rationale: "The most frequent symptom of lung cancer is cough or change in a chronic cough. People frequently ignore this symptom and attribute it to smoking or a respiratory infection. A new onset of allergies, frequent respiratory infections, and fatigue are not characteristic early signs of lung cancer. (PTS:1 REF:p.579)"
+        },
+        {
+            id: 17,
+            question: "17. A client presents to the walk-in clinic reporting a dry, irritating cough and production of a small amount of mucus-like sputum. The client also reports soreness in the chest in the sternal area. The nurse should suspect that the primary care provider will assess the client for which health problem?",
+            options: [
+                "A. Pleural effusion",
+                "B. Pulmonary embolism",
+                "C. Tracheobronchitis",
+                "D. Tuberculosis"
+            ],
+            correct: 2, // C
+            rationale: "Initially, the client with tracheobronchitis has a dry, irritating cough and expectorates a scant amount of mucoid sputum. The client may report sternal soreness from coughing and have fever or chills, night sweats, headache, and general malaise. Pleural effusion and pulmonary embolism do not normally cause sputum production and would likely cause acute shortness of breath. Hemoptysis is characteristic of tuberculosis. (PTS:1 REF:p.531)"
+        },
+        {
+            id: 18,
+            question: "18. A hospital has been the site of an increased incidence of hospital-acquired pneumonia (HAP). What is an important measure for the prevention of HAP?",
+            options: [
+                "A. Administration of prophylactic antibiotics",
+                "B. Administration of pneumococcal vaccine to vulnerable individuals",
+                "C. Obtaining culture and sensitivity swabs from all newly admitted clients",
+                "D. Administration of antiretroviral medications to clients over age 65"
+            ],
+            correct: 1, // B
+            rationale: "Pneumococcal vaccination reduces the incidence of pneumonia, hospitalizations for cardiac conditions, and deaths in the general older adult population. A one-time vaccination of pneumococcal polysaccharide vaccine (PPSV) is recommended for all clients 65 years of age or older and those with chronic diseases. Antibiotics are not given on a preventative basis and antiretroviral medications do not affect the most common causative microorganisms. Culture and sensitivity testing by swabbing is not performed for pneumonia since the microorganisms are found in sputum. (PTS:1 REF:p.532)"
+        },
+        {
+            id: 19,
+            question: "19. When assessing for substances that are known to harm workers' lungs, the occupational health nurse should assess their potential exposure to which of the following?",
+            options: [
+                "A. Organic acids",
+                "B. Solvents",
+                "C. Asbestos",
+                "D. Gypsum"
+            ],
+            correct: 2, // C
+            rationale: "Pneumoconiosis is a general term given to any lung disease caused by dusts that are breathed in and then deposited deep in the lungs causing damage. Pneumoconiosis is usually considered an occupational lung disease, and includes asbestosis, silicosis, and coal workers' pneumoconiosis, also known as 'Black Lung Disease.' Asbestos is among the more common causes of pneumoconiosis. Organic acids, solvents, and gypsum do not have this effect. (PTS:1 REF:p.576)"
+        },
+        {
+            id: 20,
+            question: "20. A client presents to the emergency department after being in a boating accident about 3 hours ago. Now the client reports headache, fatigue, and the feeling of not being able to breathe enough. The nurse notes that the client is restless and tachycardic with an elevated blood pressure. This client may be in the early stages of which respiratory problem?",
+            options: [
+                "A. Pneumoconiosis",
+                "B. Pleural effusion",
+                "C. Acute respiratory failure",
+                "D. Pneumonia"
+            ],
+            correct: 2, // C
+            rationale: "Early signs of acute respiratory failure are those associated with impaired oxygenation and may include restlessness, fatigue, headache, dyspnea, air hunger, tachycardia, and increased blood pressure. As the hypoxemia progresses, more obvious signs may be present, including confusion, lethargy, tachycardia, tachypnea, central cyanosis, diaphoresis, and, finally, respiratory arrest. Pneumonia is infectious and would not result from trauma. Pneumoconiosis results from exposure to occupational toxins. A pleural effusion does not cause this constellation of symptoms. (PTS:1 REF:p.556)"
+        },
+        {
+            id: 21,
+            question: "21. The nurse is caring for an adult client recently diagnosed with the early stages of lung cancer. The nurse is aware that the preferred method of treating clients with non--small cell tumors is what method?",
+            options: [
+                "A. Chemotherapy",
+                "B. Radiation",
+                "C. Surgical resection",
+                "D. Bronchoscopic opening of the airway"
+            ],
+            correct: 2, // C
+            rationale: "Surgical resection is the preferred method of treating clients with localized non--small cell tumors with no evidence of metastatic spread and adequate cardiopulmonary function. The other listed treatment options may be considered, but surgery is preferred. (PTS:1 REF:p.580)"
+        },
+        {
+            id: 22,
+            question: "22. A client is receiving thrombolytic therapy for the treatment of pulmonary emboli. What is the best way for the nurse to assess the client's oxygenation status at the bedside?",
+            options: [
+                "A. Obtain serial ABG samples.",
+                "B. Monitor pulse oximetry readings.",
+                "C. Perform chest auscultation.",
+                "D. Monitor incentive spirometry volumes."
+            ],
+            correct: 1, // B
+            rationale: "The nurse assesses the client with pulmonary emboli frequently for signs of hypoxemia and monitors the pulse oximetry values to evaluate the effectiveness of the oxygen therapy. ABGs are accurate indicators of oxygenation status, but are not analyzed at the bedside. PFTs and incentive spirometry volumes do not accurately reveal oxygenation status. (PTS:1 REF:p.540)"
+        },
+        {
+            id: 23,
+            question: "23. A client with thoracic trauma is admitted to the ICU. The nurse notes the client's chest and neck are swollen and there is a crackling sensation when palpated. The nurse consequently identifies the presence of subcutaneous emphysema. If this condition becomes severe and threatens airway patency, what intervention is indicated?",
+            options: [
+                "A. A chest tube",
+                "B. A tracheostomy",
+                "C. An endotracheal tube",
+                "D. A feeding tube"
+            ],
+            correct: 1, // B
+            rationale: "In severe cases in which there is widespread subcutaneous emphysema, a tracheostomy is indicated if airway patency is threatened by pressure of the trapped air on the trachea. The other listed tubes would neither resolve the subcutaneous emphysema nor the consequent airway constriction. (PTS:1 REF:p.598)"
+        },
+        {
+            id: 24,
+            question: "24. The occupational health nurse is assessing an employee who has just had respiratory exposure to a toxin. What should the nurse assess? Select all that apply.",
+            options: [
+                "A. Time frame of exposure",
+                "B. Type of respiratory protection used",
+                "C. Immunization status",
+                "D. Breath sounds",
+                "E. Intensity of exposure"
+            ],
+            correct: [0,1,3,4], // A, B, D, E
+            rationale: "Key aspects of any assessment of clients with a potential occupational respiratory history include job and job activities, exposure levels, general hygiene, time frame of exposure, effectiveness of respiratory protection used, and direct versus indirect exposures. The client's current respiratory status would also be a priority. Occupational lung hazards are not normally influenced by immunizations. (PTS:1 REF:p.577)"
+        },
+        {
+            id: 25,
+            question: "25. A client has just been diagnosed with small cell lung cancer. The client asks the nurse why the doctor is not offering surgery as a treatment for the cancer. Which fact about lung cancer treatment should inform the nurse's response?",
+            options: [
+                "A. The cells in small cell cancer of the lung are not large enough to visualize in surgery.",
+                "B. Small cell lung cancer is self-limiting in many clients, and surgery should be delayed.",
+                "C. Clients with small cell lung cancer are not normally stable enough to survive surgery.",
+                "D. Small cell cancer of the lung grows rapidly and metastasizes early and extensively."
+            ],
+            correct: 3, // D
+            rationale: "Surgery is primarily used for non-small cell lung cancer, because small cell cancer of the lung grows rapidly and metastasizes early and extensively. Difficult visualization and a client's medical instability are not the limiting factors. Lung cancer is not a self-limiting disease. (PTS:1 REF:p.578)"
+        },
+        {
+            id: 26,
+            question: "26. A client who was involved in a workplace accident sustained a penetrating wound of the chest that led to acute respiratory failure. Which goal of treatment should the care team prioritize when planning this client's care?",
+            options: [
+                "A. Facilitation of long-term intubation",
+                "B. Restoration of adequate gas exchange",
+                "C. Attainment of effective coping",
+                "D. Self-management of oxygen therapy"
+            ],
+            correct: 1, // B
+            rationale: "The objectives of treatment are to correct the underlying cause of respiratory failure and to restore adequate gas exchange in the lung. This is priority over coping and self-care. Long-term ventilation may or may not be indicated. (PTS:1 REF:p.556)"
+        },
+        {
+            id: 27,
+            question: "27. A client is brought to the emergency department by ambulance after a motor vehicle accident in which the client received blunt trauma to the chest. The client is in acute respiratory failure, intubated, and transferred to the intensive care unit (ICU). Which assessment parameters should the nurse monitor most closely? Select all that apply.",
+            options: [
+                "A. Coping",
+                "B. Level of consciousness",
+                "C. Oral intake",
+                "D. Arterial blood gases",
+                "E. Vital signs"
+            ],
+            correct: [1,3,4], // B, D, E
+            rationale: "Trauma clients are usually treated in the ICU. The nurse assesses the client's respiratory status by monitoring the level of responsiveness, arterial blood gases, pulse oximetry, and vital signs. Oral intake and coping are not immediate priorities during the acute stage of treatment but would become more important later during recovery. (PTS:1 REF:p.590)"
+        },
+        {
+            id: 28,
+            question: "28. A client has just been diagnosed with lung cancer. After the health care provider discusses treatment options and leaves the room, the client asks the nurse how the treatment is decided upon. What would be the nurse's best response?",
+            options: [
+                "A. 'The type of treatment depends on the client's age and health status.'",
+                "B. 'The type of treatment depends on what the client wants when given the options.'",
+                "C. 'The type of treatment depends on the cell type of the cancer, the stage of the cancer, and the client's health status.'",
+                "D. 'The type of treatment depends on the discussion between the client and the health care provider of which treatment is best.'"
+            ],
+            correct: 2, // C
+            rationale: "Treatment of lung cancer depends on the cell type, the stage of the disease, and the client's physiologic status (particularly cardiac and pulmonary status). Treatment does not depend solely on the client's age or the client's preference between the different treatment modes. The decision about treatment does not primarily depend on a discussion between the client and the health care provider of which treatment is best, though this discussion will take place. (PTS:1 REF:p.580)"
+        },
+        {
+            id: 29,
+            question: "29. A firefighter was trapped in a fire and is admitted to the intensive care unit for smoke inhalation. After 12 hours, the firefighter is exhibiting signs of acute respiratory distress syndrome (ARDS) and is intubated. Which other supportive measure should be initiated in this client?",
+            options: [
+                "A. Psychological counseling",
+                "B. Nutritional support",
+                "C. High-protein oral diet",
+                "D. Occupational therapy"
+            ],
+            correct: 1, // B
+            rationale: "Aggressive, supportive care must be provided to compensate for the severe respiratory dysfunction. This supportive therapy almost always includes intubation and mechanical ventilation. In addition, circulatory support, adequate fluid volume, and nutritional support are important. Oral intake is contraindicated by intubation. Counseling and occupational therapy would not be priorities during the acute stage of ARDS. (PTS:1 REF:p.572)"
+        },
+        {
+            id: 30,
+            question: "30. An 87-year-old client has been hospitalized with pneumonia. Which nursing action would be a priority in this client's plan of care?",
+            options: [
+                "A. Nasogastric intubation",
+                "B. Administration of probiotic supplements",
+                "C. Bed rest",
+                "D. Cautious hydration"
+            ],
+            correct: 3, // D
+            rationale: "Supportive treatment of pneumonia in the older adults includes hydration (with caution and with frequent assessment because of the risk of fluid overload in the older adults); supplemental oxygen therapy; and assistance with deep breathing, coughing, frequent position changes, and early ambulation. Mobility is not normally discouraged and an NG tube is not necessary in most cases. Probiotics may or may not be prescribed for the client. (PTS:1 REF:p.540)"
+        },
+        {
+            id: 31,
+            question: "31. The nurse caring for a client with an endotracheal tube recognizes several disadvantages of an endotracheal tube. What would the nurse recognize as a disadvantage of endotracheal tubes?",
+            options: [
+                "A. Cognition is decreased.",
+                "B. Daily arterial blood gases (ABGs) are necessary.",
+                "C. Slight tracheal bleeding is anticipated.",
+                "D. The cough reflex is depressed."
+            ],
+            correct: 3, // D
+            rationale: "There are several disadvantages of an endotracheal tube. Disadvantages include suppression of the client's cough reflex, thickening of secretions, and depressed swallowing reflexes. Ulceration and stricture of the larynx or trachea may develop, but bleeding is not an expected finding. The tube should not influence cognition and daily ABGs are not always required. (PTS:1 REF:p.557)"
+        },
+        {
+            id: 32,
+            question: "32. The medical nurse is creating the care plan of a client with a tracheostomy requiring mechanical ventilation. Which nursing action is most appropriate?",
+            options: [
+                "A. Keep the client in a low Fowler position.",
+                "B. Perform tracheostomy care at least once per day.",
+                "C. Maintain continuous bed rest.",
+                "D. Monitor cuff pressure every 8 hours."
+            ],
+            correct: 3, // D
+            rationale: "The cuff pressure should be monitored every 8 hours. It is important to perform tracheostomy care at least every 8 hours, not once per day, because of the risk of infection. The client should be encouraged to ambulate, if possible, not maintain continuous bed rest, and a low Fowler position is not indicated. (PTS:1 REF:p.557)"
+        },
+        {
+            id: 33,
+            question: "33. A nurse is educating a client in anticipation of a procedure that will require a water-sealed chest drainage system. What should the nurse tell the client and the family that this drainage system is used for?",
+            options: [
+                "A. Maintaining positive chest-wall pressure",
+                "B. Monitoring pleural fluid osmolarity",
+                "C. Providing positive intrathoracic pressure",
+                "D. Removing excess air and fluid"
+            ],
+            correct: 3, // D
+            rationale: "Chest tubes and closed drainage systems are used to re-expand the lung involved and to remove excess air, fluid, and blood. They are not used to maintain positive chest-wall pressure, monitor pleural fluid, or provide positive intrathoracic pressure. (PTS:1 REF:p.596)"
+        },
+        {
+            id: 34,
+            question: "34. The nurse is preparing to wean a client from the ventilator. Which assessment parameter is most important for the nurse to assess?",
+            options: [
+                "A. Fluid intake for the last 24 hours",
+                "B. Arterial blood gas (ABG) levels",
+                "C. Prior outcomes of weaning",
+                "D. Electrocardiogram (ECG) results"
+            ],
+            correct: 1, // B
+            rationale: "Before weaning a client from mechanical ventilation, it is most important to have baseline ABG levels. During the weaning process, ABG levels will be checked to assess how the client is tolerating the procedure. Other assessment parameters are relevant, but less critical. Measuring fluid volume intake and output is always important when a client is being mechanically ventilated. Prior attempts at weaning and ECG results are documented on the client's record, and the nurse can refer to them before the weaning process begins. (PTS:1 REF:p.569)"
+        },
+        {
+            id: 35,
+            question: "35. While assessing the client, the nurse observes constant bubbling in the water-seal chamber of the client's closed chest-drainage system. Which conclusion should the nurse reach?",
+            options: [
+                "A. The system is functioning normally.",
+                "B. The client has a pneumothorax.",
+                "C. The system has an air leak.",
+                "D. The chest tube is obstructed."
+            ],
+            correct: 2, // C
+            rationale: "The water-seal chamber of a wet chest drainage system has a one-way valve or water seal that prevents air from moving back into the chest when the client inhales. There is an increase in the water level with inspiration and a return to the baseline level during exhalation; this is referred to as tidaling. Intermittent bubbling in the water-seal chamber is normal, but continuous bubbling can indicate an air leak, which requires immediate assessment and intervention. The client with a pneumothorax will have intermittent bubbling in the water-seal chamber. If the tube is obstructed, the nurse should notice that the fluid has stopped fluctuating in the water-seal chamber. (PTS:1 REF:p.596)"
+        },
+        {
+            id: 36,
+            question: "36. While caring for a client with an endotracheal tube, the nurse should normally provide suctioning how often?",
+            options: [
+                "A. Every 2 hours when the client is awake",
+                "B. When adventitious breath sounds are auscultated",
+                "C. When there is a need to prevent the client from coughing",
+                "D. When the nurse needs to stimulate the cough reflex"
+            ],
+            correct: 1, // B
+            rationale: "It is usually necessary to suction the client's secretions because of the decreased effectiveness of the cough mechanism. Tracheal suctioning is performed when adventitious breath sounds are detected or whenever secretions are present. Unnecessary suctioning, such as scheduling every 2 hours, can initiate bronchospasm and cause trauma to the tracheal mucosa. (PTS:1 REF:p.559)"
+        },
+        {
+            id: 37,
+            question: "37. The nurse is discussing activity management with a client who is postoperative following thoracotomy. What instructions should the nurse give to the client regarding activity immediately following discharge?",
+            options: [
+                "A. Walk 1 mile (1.6 km) 3 to 4 times a week.",
+                "B. Use weights daily to increase arm strength.",
+                "C. Walk on a treadmill 30 minutes daily.",
+                "D. Perform shoulder exercises five times daily."
+            ],
+            correct: 3, // D
+            rationale: "The nurse emphasizes the importance of progressively increased activity. The nurse also instructs the client on the importance of performing shoulder exercises five times daily. The client should ambulate with limits and realize that the return of strength will likely be gradual and likely will not include weight lifting or lengthy walks. (PTS:1 REF:p.585)"
+        },
+        {
+            id: 38,
+            question: "38. A critical care nurse is caring for a client with an endotracheal tube who is on a ventilator. The nurse knows that meticulous airway management of this client is necessary. What is the main rationale for this?",
+            options: [
+                "A. Maintaining a patent airway",
+                "B. Preventing the need for suctioning",
+                "C. Maintaining the sterility of the client's airway",
+                "D. Increasing the client's lung compliance"
+            ],
+            correct: 0, // A
+            rationale: "Maintaining a patent (open) airway is achieved through meticulous airway management, whether in an emergency situation such as airway obstruction or in long-term management, as in caring for a client with an endotracheal or a tracheostomy tube. Airway management is not primarily conducted to reduce the need for suctioning, to maintain sterility or to increase compliance because none of these are important if the client's airway is not patent. (PTS:1 REF:p.566)"
+        },
+        {
+            id: 39,
+            question: "39. The critical care nurse and the other members of the care team are assessing the client to see if the client is ready to be weaned from the ventilator. What are the most important predictors of successful weaning that the nurse should identify?",
+            options: [
+                "A. Stable vital signs and arterial blood gases (ABGs)",
+                "B. Pulse oximetry above 80% and stable vital signs",
+                "C. Stable nutritional status and ABGs",
+                "D. Normal level of consciousness"
+            ],
+            correct: 0, // A
+            rationale: "Among many other predictors, stable vital signs and ABGs are important predictors of successful weaning. Pulse oximetry must greatly exceed 80%. Nutritional status is important, but vital signs and ABGs are even more significant. Clients who are weaned may or may not have a normal level of consciousness. (PTS:1 REF:p.569)"
+        },
+        {
+            id: 40,
+            question: "40. The OR nurse is setting up a water-seal chest drainage system for a client who has just had a thoracotomy. The nurse knows that the amount of suction in the system is determined by the water level. At what suction level should the nurse set the system?",
+            options: [
+                "A. 20 cm H2O",
+                "B. 15 cm H2O",
+                "C. 10 cm H2O",
+                "D. 5 cm H2O"
+            ],
+            correct: 0, // A
+            rationale: "The amount of suction is determined by the water level. It is usually set at 20 cm H2O; adding more fluid results in more suction. (PTS:1 REF:p.596)"
+        },
+        {
+            id: 41,
+            question: "41. The nurse is preparing to discharge a client after thoracotomy. The client is going home on oxygen therapy and requires wound care. As a result, the client will receive home care nursing. Which information should the nurse include in discharge teaching for this client?",
+            options: [
+                "A. Safe technique for self-suctioning of secretions",
+                "B. Technique for performing postural drainage",
+                "C. Correct and safe use of oxygen therapy equipment",
+                "D. How to provide safe and effective tracheostomy care"
+            ],
+            correct: 2, // C
+            rationale: "Respiratory care and other treatment modalities (oxygen, incentive spirometry, chest physiotherapy [CPT], and oral, inhaled, or intravenous medications) may be continued at home. Therefore, the nurse needs to instruct the client and family in their correct and safe use. The scenario does not indicate the client needs suctioning, postural drainage, or tracheostomy care. (PTS:1 REF:p.582)"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let selectedOption = null;
+    let answers = Array(questions.length).fill(null);
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        if (!q) return;
+
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+        document.getElementById('counter').textContent = `${currentQuestion + 1}/${questions.length}`;
+        document.getElementById('questionNumber').textContent = q.id;
+
+        document.getElementById('question').innerHTML = q.question;
+        loadOptions(q);
+
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+
+        document.getElementById('prevBtn').disabled = currentQuestion === 0;
+        const stored = answers[q.id - 1];
+        document.getElementById('nextBtn').disabled = stored === null || stored === undefined;
+        document.getElementById('nextBtn').textContent = currentQuestion >= questions.length - 1 ? 'Finish ➡️' : 'Next ➡️';
+    }
+
+    function loadOptions(q) {
+        const container = document.getElementById('options');
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerHTML = `<div class="option-letter">${String.fromCharCode(65 + idx)}</div><div>${opt}</div>`;
+            div.onclick = () => selectOption(idx);
+            container.appendChild(div);
+        });
+
+        const saved = answers[q.id - 1];
+        if (saved !== null && saved !== undefined) {
+            selectOption(saved, true);
+        }
+    }
+
+    function selectOption(index, fromMemory = false) {
+        const q = questions[currentQuestion];
+        if (!fromMemory && selectedOption !== null) return;
+
+        if (!fromMemory) {
+            selectedOption = index;
+            answers[q.id - 1] = index;
+        }
+
+        highlightSelected(index, q);
+        showFeedback(index, q);
+        document.getElementById('nextBtn').disabled = false;
+        document.getElementById('cancelBtn').classList.add('show');
+    }
+
+    function highlightSelected(index, q) {
+        const opts = document.querySelectorAll('.option');
+        opts.forEach((opt, i) => opt.classList.remove('correct', 'incorrect'));
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        if (Array.isArray(q.correct)) {
+            correctIndices.forEach(ci => opts[ci]?.classList.add('correct'));
+            if (!correctIndices.includes(index)) {
+                opts[index]?.classList.add('incorrect');
+            }
+        } else {
+            if (index === q.correct) {
+                opts[index].classList.add('correct');
+            } else {
+                opts[index].classList.add('incorrect');
+                opts[q.correct].classList.add('correct');
+            }
+        }
+    }
+
+    function showFeedback(index, q) {
+        const fb = document.getElementById('feedback');
+        const icon = document.getElementById('feedbackIcon');
+        const text = document.getElementById('feedbackText');
+        const rationaleDiv = document.getElementById('rationale');
+        const rationaleP = document.getElementById('rationaleText');
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        const isCorrect = correctIndices.includes(index);
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            icon.textContent = '✅';
+            text.textContent = 'CORRECT! Well done.';
+        } else {
+            fb.className = 'feedback incorrect';
+            icon.textContent = '❌';
+            const letters = correctIndices.map(c => String.fromCharCode(65 + c)).join(', ');
+            text.textContent = `INCORRECT. The correct answer(s): ${letters}`;
+        }
+
+        fb.style.display = 'flex';
+        rationaleP.innerHTML = q.rationale;
+        rationaleDiv.classList.add('show');
+    }
+
+    function cancelSelection() {
+        const q = questions[currentQuestion];
+        selectedOption = null;
+        answers[q.id - 1] = null;
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct', 'incorrect'));
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+        document.getElementById('nextBtn').disabled = true;
+    }
+
+    function nextCard() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            selectedOption = null;
+            loadQuestion();
+        } else {
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    function previousCard() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            const q = questions[currentQuestion];
+            selectedOption = answers[q.id - 1];
+            loadQuestion();
+        }
+    }
+
+    // keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key >= '1' && e.key <= '4') selectOption(parseInt(e.key)-1);
+        else if (e.key >= 'a' && e.key <= 'd') selectOption(e.key.charCodeAt(0)-97);
+        else if (e.key >= 'A' && e.key <= 'D') selectOption(e.key.charCodeAt(0)-65);
+        else if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) previousCard();
+        else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) nextCard();
+        else if (e.key === 'Escape' && document.getElementById('cancelBtn').classList.contains('show')) cancelSelection();
+    });
+
+    loadQuestion();
+</script>
+</body>
+</html>
